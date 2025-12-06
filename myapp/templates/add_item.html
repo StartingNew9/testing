@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add Item</title>
+</head>
+
+<body style="font-family: Arial; background-color: #eef;">
+    <h1>Add Lost or Found Item</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Item Name:</label><br>
+            <input type="text" name="name">
+        </p>
+        <p>
+            <label>Description:</label><br>
+            <textarea name="desc" rows="3" cols="40"></textarea>
+        </p>
+        <p>
+            <label>Location:</label><br>
+            <input type="text" name="location">
+        </p>
+        <p>
+            <label>Contact Info:</label><br>
+            <input type="text" name="contact">
+        </p>
+        <p>
+            <label>Status:</label><br>
+            <select name="status">
+                <option value="lost">Lost</option>
+                <option value="found">Found</option>
+            </select>
+        </p>
+        <p>
+            <button type="submit">Save</button>
+            <a href="{% url 'home' %}">Back</a>
+        </p>
+    </form>
+</body>
+
+</html>

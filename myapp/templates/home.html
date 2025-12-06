@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lost and Found</title>
+</head>
+
+<body style="font-family: Arial; background-color: #f5f5f5;">
+    <h1>Lost and Found Board</h1>
+    <p><a href="{% url 'add_item' %}">➕ Add New Item</a></p>
+    <hr>
+
+    {% if items %}
+    {% for item in items %}
+    <div style="background-color: white; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc;">
+        <h3>{{ item.name }}</h3>
+        <p><b>Status:</b> {{ item.status }}</p>
+        <p><b>Description:</b> {{ item.description }}</p>
+        <p><b>Location:</b> {{ item.location }}</p>
+        <p><b>Contact:</b> {{ item.contact }}</p>
+        <p><b>Date:</b> {{ item.date }}</p>
+
+        {% if item.status != 'claimed' %}
+        <a href="{% url 'mark_claimed' item.id %}">Mark as Claimed</a>
+        {% else %}
+        <em>Already Claimed</em>
+        {% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No items have been posted yet.</p>
+    {% endif %}
+</body>
+
+</html>
